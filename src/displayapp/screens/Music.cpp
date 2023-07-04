@@ -264,9 +264,8 @@ bool Music::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
         lv_obj_set_hidden(btnPrev, false);
         lv_obj_set_hidden(btnVolDown, true);
         lv_obj_set_hidden(btnVolUp, true);
-        return true;
       }
-      return false;
+      return true;
     }
     case TouchEvents::SwipeLeft: {
       musicService.event(Controllers::MusicService::EVENT_MUSIC_NEXT);
