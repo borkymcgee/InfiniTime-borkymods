@@ -293,7 +293,7 @@ void DisplayApp::Refresh() {
           if (currentApp == Apps::Clock) {
             switch (gesture) {
               case TouchEvents::SwipeUp:
-                LoadNewScreen(Apps::Launcher, DisplayApp::FullRefreshDirections::Up);
+                LoadNewScreen(Apps::Timer, DisplayApp::FullRefreshDirections::Up);
                 break;
               case TouchEvents::SwipeDown:
                 LoadNewScreen(Apps::Notifications, DisplayApp::FullRefreshDirections::Down);
@@ -307,6 +307,8 @@ void DisplayApp::Refresh() {
               default:
                 break;
             }
+          } else if(currentApp == Apps::Timer && gesture == TouchEvents::SwipeUp){
+            LoadNewScreen(Apps::Launcher, DisplayApp::FullRefreshDirections::Up);
           } else if (gesture == LoadDirToReturnSwipe(appStackDirections.Top())) {
             LoadPreviousScreen();
           }
