@@ -8,6 +8,7 @@
 #include "displayapp/screens/Screen.h"
 #include "components/datetime/DateTimeController.h"
 #include "components/ble/BleController.h"
+#include "touchhandler/TouchHandler.h"
 #include "utility/DirtyValue.h"
 
 namespace Pinetime {
@@ -32,7 +33,8 @@ namespace Pinetime {
                                  Controllers::Settings& settingsController,
                                  Controllers::HeartRateController& heartRateController,
                                  Controllers::MotionController& motionController,
-                                 Controllers::FS& filesystem);
+                                 Controllers::FS& filesystem,
+                                 Controllers::TouchHandler& touchHandler);
         ~WatchFaceCasioStyleG7710() override;
 
         void Refresh() override;
@@ -75,6 +77,8 @@ namespace Pinetime {
         lv_obj_t* line_day_of_year;
         lv_obj_t* backgroundLabel;
         lv_obj_t* bleIcon;
+        lv_obj_t* touchLockFinger;
+        lv_obj_t* touchLockCross;
         lv_obj_t* batteryPlug;
         lv_obj_t* label_battery_value;
         lv_obj_t* heartbeatIcon;
@@ -93,6 +97,7 @@ namespace Pinetime {
         Controllers::Settings& settingsController;
         Controllers::HeartRateController& heartRateController;
         Controllers::MotionController& motionController;
+        Controllers::TouchHandler& touchHandler;
 
         lv_task_t* taskRefresh;
         lv_font_t* font_dot40 = nullptr;

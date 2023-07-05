@@ -340,10 +340,9 @@ void DisplayApp::Refresh() {
         // Create reboot app and open it instead
         LoadNewScreen(Apps::SysInfo, DisplayApp::FullRefreshDirections::Up);
         break;
+        //what to do when button is double-clicked
       case Messages::ButtonDoubleClicked:
-        if (currentApp != Apps::Notifications && currentApp != Apps::NotificationsPreview) {
-          LoadNewScreen(Apps::Notifications, DisplayApp::FullRefreshDirections::Down);
-        }
+        touchHandler.touchEnabled = !touchHandler.touchEnabled;
         break;
 
       case Messages::BleFirmwareUpdateStarted:
@@ -419,7 +418,8 @@ void DisplayApp::LoadScreen(Apps app, DisplayApp::FullRefreshDirections directio
                                                        heartRateController,
                                                        motionController,
                                                        systemTask->nimble().weather(),
-                                                       filesystem);
+                                                       filesystem,
+                                                       touchHandler);
       break;
 
     case Apps::Error:

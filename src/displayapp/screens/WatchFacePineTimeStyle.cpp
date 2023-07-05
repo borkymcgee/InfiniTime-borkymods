@@ -50,7 +50,8 @@ WatchFacePineTimeStyle::WatchFacePineTimeStyle(Controllers::DateTime& dateTimeCo
                                                Controllers::NotificationManager& notificationManager,
                                                Controllers::Settings& settingsController,
                                                Controllers::MotionController& motionController,
-                                               Controllers::WeatherService& weatherService)
+                                               Controllers::WeatherService& weatherService,
+                                               Controllers::TouchHandler& touchHandler)
   : currentDateTime {{}},
     batteryIcon(false),
     dateTimeController {dateTimeController},
@@ -59,7 +60,8 @@ WatchFacePineTimeStyle::WatchFacePineTimeStyle(Controllers::DateTime& dateTimeCo
     notificationManager {notificationManager},
     settingsController {settingsController},
     motionController {motionController},
-    weatherService {weatherService} {
+    weatherService {weatherService},
+    touchHandler {touchHandler} {
 
   // Create a 200px wide background rectangle
   timebar = lv_obj_create(lv_scr_act(), nullptr);
@@ -102,7 +104,18 @@ WatchFacePineTimeStyle::WatchFacePineTimeStyle(Controllers::DateTime& dateTimeCo
   plugIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_text_static(plugIcon, Symbols::plug);
   lv_obj_set_style_local_text_color(plugIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
-  lv_obj_align(plugIcon, sidebar, LV_ALIGN_IN_TOP_MID, 10, 2);
+  lv_obj_align(plugIcon, sidebar, LV_ALIGN_IN_TOP_LEFT, 10, 2);
+
+  touchLockFinger = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_color(touchLockFinger, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, Convert(settingsController.GetPTSColorTime()));
+  lv_label_set_text_static(touchLockFinger, "t");
+  lv_obj_align(touchLockFinger, timebar, LV_ALIGN_IN_TOP_LEFT, 6, 2);
+
+  touchLockCross = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_color(touchLockCross, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, Convert(settingsController.GetPTSColorTime()));
+  lv_obj_set_style_local_text_font(touchLockCross, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &fontawesome_weathericons);
+  lv_label_set_text_static(touchLockCross, Symbols::ban);
+  lv_obj_align(touchLockCross, timebar, LV_ALIGN_IN_TOP_LEFT, 1, 1); //-5,-1 relative to finger
 
   bleIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(bleIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
@@ -467,6 +480,8 @@ void WatchFacePineTimeStyle::Refresh() {
     lv_label_set_text_static(bleIcon, BleIcon::GetIcon(bleState.Get()));
     lv_obj_realign(bleIcon);
   }
+
+  lv_obj_set_hidden(touchLockCross, touchHandler.touchEnabled);
 
   notificationState = notificationManager.AreNewNotificationsAvailable();
   if (notificationState.IsUpdated()) {

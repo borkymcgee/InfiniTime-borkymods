@@ -9,6 +9,7 @@
 #include "displayapp/Colors.h"
 #include "components/datetime/DateTimeController.h"
 #include "components/ble/weather/WeatherService.h"
+#include "touchhandler/TouchHandler.h"
 #include "components/ble/BleController.h"
 #include "utility/DirtyValue.h"
 
@@ -32,7 +33,8 @@ namespace Pinetime {
                                Controllers::NotificationManager& notificationManager,
                                Controllers::Settings& settingsController,
                                Controllers::MotionController& motionController,
-                               Controllers::WeatherService& weather);
+                               Controllers::WeatherService& weather,
+                               Controllers::TouchHandler& touchHandler);
         ~WatchFacePineTimeStyle() override;
 
         bool OnTouchEvent(TouchEvents event) override;
@@ -91,6 +93,8 @@ namespace Pinetime {
         lv_obj_t* temperature;
         lv_obj_t* plugIcon;
         lv_obj_t* bleIcon;
+        lv_obj_t* touchLockFinger;
+        lv_obj_t* touchLockCross;
         lv_obj_t* calendarOuter;
         lv_obj_t* calendarInner;
         lv_obj_t* calendarBar1;
@@ -114,6 +118,7 @@ namespace Pinetime {
         Controllers::Settings& settingsController;
         Controllers::MotionController& motionController;
         Controllers::WeatherService& weatherService;
+        Controllers::TouchHandler& touchHandler;
 
         void SetBatteryIcon();
         void CloseMenu();

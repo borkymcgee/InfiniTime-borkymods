@@ -21,7 +21,8 @@ WatchFaceCasioStyleG7710::WatchFaceCasioStyleG7710(Controllers::DateTime& dateTi
                                                    Controllers::Settings& settingsController,
                                                    Controllers::HeartRateController& heartRateController,
                                                    Controllers::MotionController& motionController,
-                                                   Controllers::FS& filesystem)
+                                                   Controllers::FS& filesystem,
+                                                   Controllers::TouchHandler& touchHandler)
   : currentDateTime {{}},
     batteryIcon(false),
     dateTimeController {dateTimeController},
@@ -30,7 +31,8 @@ WatchFaceCasioStyleG7710::WatchFaceCasioStyleG7710(Controllers::DateTime& dateTi
     notificatioManager {notificatioManager},
     settingsController {settingsController},
     heartRateController {heartRateController},
-    motionController {motionController} {
+    motionController {motionController},
+    touchHandler {touchHandler}{
 
   lfs_file f = {};
   if (filesystem.FileOpen(&f, "/fonts/lv_font_dots_40.bin", LFS_O_RDONLY) >= 0) {
@@ -66,6 +68,17 @@ WatchFaceCasioStyleG7710::WatchFaceCasioStyleG7710(Controllers::DateTime& dateTi
   lv_obj_set_style_local_text_color(bleIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, color_text);
   lv_label_set_text_static(bleIcon, Symbols::bluetooth);
   lv_obj_align(bleIcon, batteryPlug, LV_ALIGN_OUT_LEFT_MID, -5, 0);
+
+  touchLockFinger = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_color(touchLockFinger, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, color_text);
+  lv_label_set_text_static(touchLockFinger, "t");
+  lv_obj_align(touchLockFinger, lv_scr_act(), LV_ALIGN_IN_TOP_RIGHT, -120, 0);
+
+  touchLockCross = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_set_style_local_text_color(touchLockCross, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, color_text);
+  lv_obj_set_style_local_text_font(touchLockCross, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &fontawesome_weathericons);
+  lv_label_set_text_static(touchLockCross, Symbols::ban);
+  lv_obj_align(touchLockCross, lv_scr_act(), LV_ALIGN_IN_TOP_RIGHT, -112, -1); //+1,-1 relative to finger
 
   notificationIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(notificationIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, color_text);
@@ -221,6 +234,8 @@ void WatchFaceCasioStyleG7710::Refresh() {
   if (notificationState.IsUpdated()) {
     lv_label_set_text_static(notificationIcon, NotificationIcon::GetIcon(notificationState.Get()));
   }
+
+  lv_obj_set_hidden(touchLockCross, touchHandler.touchEnabled);
 
   currentDateTime = std::chrono::time_point_cast<std::chrono::minutes>(dateTimeController.CurrentDateTime());
   if (currentDateTime.IsUpdated()) {
