@@ -129,9 +129,13 @@ void Notifications::OnPreviewInteraction() {
   }
 }
 
-void Notifications::DismissToBlack() {
+void Notifications::DismissToBlack(bool rightSwipe) {
   currentItem.reset(nullptr);
-  app->SetFullRefresh(DisplayApp::FullRefreshDirections::RightAnim);
+  if (rightSwipe){
+    app->SetFullRefresh(DisplayApp::FullRefreshDirections::RightAnim);
+  } else {
+    app->SetFullRefresh(DisplayApp::FullRefreshDirections::LeftAnim);
+  }
   // create black transition screen to let the notification dismiss to blackness
   lv_obj_t* blackBox = lv_obj_create(lv_scr_act(), nullptr);
   lv_obj_set_size(blackBox, LV_HOR_RES, LV_VER_RES);
@@ -175,7 +179,24 @@ bool Notifications::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
         } else {
           // don't update id, won't be found be refresh and try to load latest message or no message box
         }
-        DismissToBlack();
+        DismissToBlack(true);
+        return true;
+      }
+      return false;
+    case Pinetime::Applications::TouchEvents::SwipeLeft:
+      if (validDisplay) {
+        auto previousMessage = notificationManager.GetPrevious(currentId);
+        auto nextMessage = notificationManager.GetNext(currentId);
+        afterDismissNextMessageFromAbove = previousMessage.valid;
+        notificationManager.Dismiss(currentId);
+        if (previousMessage.valid) {
+          currentId = previousMessage.id;
+        } else if (nextMessage.valid) {
+          currentId = nextMessage.id;
+        } else {
+          // don't update id, won't be found be refresh and try to load latest message or no message box
+        }
+        DismissToBlack(false);
         return true;
       }
       return false;
