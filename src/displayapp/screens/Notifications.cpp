@@ -131,7 +131,7 @@ void Notifications::OnPreviewInteraction() {
 
 void Notifications::DismissToBlack(bool rightSwipe) {
   currentItem.reset(nullptr);
-  if (rightSwipe){
+  if (rightSwipe) {
     app->SetFullRefresh(DisplayApp::FullRefreshDirections::RightAnim);
   } else {
     app->SetFullRefresh(DisplayApp::FullRefreshDirections::LeftAnim);
