@@ -1,18 +1,9 @@
-# WARNING, THIS BRANCH IS CURRENTLY UNDER CONSTRUCTION AFTER AN ORGANIZATIONAL CHANGE, SOME OF THE INFORMATION HERE IS INCORRECT
-
-This should be remedied by the end of the day of 7/14/23, please refrain from touching it until then
-
 #  InfiniTime-borkymods
 
 Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating a suite of modifications by me (borky)
 
 ## Added features include:
-- added features to the the casio watchface [casio-plus](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-plus)
-  - current weather
-  - artist/track/album of the current media
-  - ability to choose temperature unit for weather (also added this feature to PineTimeStyle)
-  - settings menu like PineTimeStyle to enable these new features
-  - display number of notifications
+- added weather and PTS-style settings menu to enable/disable it [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
 - touchscreen lock [touch-lock](https://github.com/borkymcgee/InfiniTime-borkymods/tree/touch-lock)
   - double pressing the button disables or re-enables the touch screen
   - an indicator of the current state of the lock on the casio and PineTimeStyle watchfaces
@@ -24,6 +15,15 @@ Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating
 - ability to swipe left or right on the timer app while setting to increase/decrease the timer by 5 minutes [timer-swipe-jump5](https://github.com/borkymcgee/InfiniTime-borkymods/tree/timer-swipe-jump5)
 - ability to swipe left or right on notifications to dismiss them [ambi-notifications](https://github.com/borkymcgee/InfiniTime-borkymods/tree/ambi-notifications)
 - custom version text :3 [custom-version-text](https://github.com/borkymcgee/InfiniTime-borkymods/tree/custom-version-text)
+
+## In progress (there was an organizational change in the repo, this branch is rather broken rn and is not included in main), should be fixed and merged soon
+
+- added features to the the casio watchface [casio-plus](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-plus)
+  - current weather
+  - artist/track/album of the current media
+  - ability to choose temperature unit for weather (also added this feature to PineTimeStyle)
+  - settings menu like PineTimeStyle to enable these new features
+  - display number of notifications
 
 ## Structure of this fork:
 - main branch: all of the mods merged together
