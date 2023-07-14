@@ -32,7 +32,7 @@ WatchFaceCasioStyleG7710::WatchFaceCasioStyleG7710(Controllers::DateTime& dateTi
     settingsController {settingsController},
     heartRateController {heartRateController},
     motionController {motionController},
-    touchHandler {touchHandler}{
+    touchHandler {touchHandler} {
 
   lfs_file f = {};
   if (filesystem.FileOpen(&f, "/fonts/lv_font_dots_40.bin", LFS_O_RDONLY) >= 0) {

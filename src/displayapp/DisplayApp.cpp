@@ -340,7 +340,7 @@ void DisplayApp::Refresh() {
         // Create reboot app and open it instead
         LoadNewScreen(Apps::SysInfo, DisplayApp::FullRefreshDirections::Up);
         break;
-        //what to do when button is double-clicked
+        // what to do when button is double-clicked
       case Messages::ButtonDoubleClicked:
         touchHandler.touchEnabled = !touchHandler.touchEnabled;
         break;
