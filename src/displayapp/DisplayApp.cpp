@@ -307,7 +307,7 @@ void DisplayApp::Refresh() {
               default:
                 break;
             }
-          } else if(currentApp == Apps::Timer && gesture == TouchEvents::SwipeUp){
+          } else if (currentApp == Apps::Timer && gesture == TouchEvents::SwipeUp) {
             LoadNewScreen(Apps::Launcher, DisplayApp::FullRefreshDirections::Up);
           } else if (gesture == LoadDirToReturnSwipe(appStackDirections.Top())) {
             LoadPreviousScreen();
