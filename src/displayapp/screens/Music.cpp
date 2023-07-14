@@ -251,7 +251,7 @@ void Music::OnObjectEvent(lv_obj_t* obj, lv_event_t event) {
   }
 }
 
-//modified to only operate via swipe
+// modified to only operate via swipe
 
 bool Music::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
   switch (event) {
