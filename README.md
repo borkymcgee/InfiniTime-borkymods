@@ -3,7 +3,7 @@
 Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating a suite of modifications by me (borky)
 
 ## Added features include:
-- added weather and PTS-style settings menu to enable/disable it [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
+- added weather and PineTimeStyle-style settings menu to enable/disable it [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
 - touchscreen lock [touch-lock](https://github.com/borkymcgee/InfiniTime-borkymods/tree/touch-lock)
   - double pressing the button disables or re-enables the touch screen
   - an indicator of the current state of the lock on the casio and PineTimeStyle watchfaces
@@ -16,10 +16,9 @@ Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating
 - ability to swipe left or right on notifications to dismiss them [ambi-notifications](https://github.com/borkymcgee/InfiniTime-borkymods/tree/ambi-notifications)
 - custom version text :3 [custom-version-text](https://github.com/borkymcgee/InfiniTime-borkymods/tree/custom-version-text)
 
-## In progress (there was an organizational change in the repo, this branch is rather broken rn and is not included in main), should be fixed and merged soon
+## In progress (due to organizational change in the repo, this branch is broken and is not included in main), should be fixed and merged soon
 
 - added features to the the casio watchface [casio-plus](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-plus)
-  - current weather
   - artist/track/album of the current media
   - ability to choose temperature unit for weather (also added this feature to PineTimeStyle)
   - settings menu like PineTimeStyle to enable these new features
