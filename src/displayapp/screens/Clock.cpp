@@ -25,7 +25,8 @@ Clock::Clock(Controllers::DateTime& dateTimeController,
              Controllers::HeartRateController& heartRateController,
              Controllers::MotionController& motionController,
              Controllers::WeatherService& weatherService,
-             Controllers::FS& filesystem)
+             Controllers::FS& filesystem,
+             Controllers::TouchHandler& touchHandler)
   : dateTimeController {dateTimeController},
     batteryController {batteryController},
     bleController {bleController},
@@ -35,6 +36,7 @@ Clock::Clock(Controllers::DateTime& dateTimeController,
     motionController {motionController},
     weatherService {weatherService},
     filesystem {filesystem},
+    touchHandler {touchHandler},
     screen {[this, &settingsController]() {
       switch (settingsController.GetWatchFace()) {
         case WatchFace::Digital:
@@ -98,7 +100,8 @@ std::unique_ptr<Screen> Clock::WatchFacePineTimeStyleScreen() {
                                                            notificationManager,
                                                            settingsController,
                                                            motionController,
-                                                           weatherService);
+                                                           weatherService,
+                                                           touchHandler);
 }
 
 std::unique_ptr<Screen> Clock::WatchFaceTerminalScreen() {
@@ -129,5 +132,6 @@ std::unique_ptr<Screen> Clock::WatchFaceCasioStyleG7710() {
                                                              settingsController,
                                                              heartRateController,
                                                              motionController,
-                                                             filesystem);
+                                                             filesystem,
+                                                             touchHandler);
 }

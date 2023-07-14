@@ -6,6 +6,8 @@ namespace Pinetime {
   namespace Controllers {
     class TouchHandler {
     public:
+      bool touchEnabled = true;
+
       struct TouchPoint {
         int x;
         int y;
