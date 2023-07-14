@@ -3,6 +3,9 @@
 Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating a suite of modifications by me (borky)
 
 ## Added features include:
+- CasioStyleG7710 notifications... fixed? [casio-notify-number](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-notify-number)
+  - Previously only showed an 'i' if there were unread notifications, which only occurs if notifications are off anyway? unsure if this is intended
+  - at any rate, it now shows the number of undismissed notifications
 - weather and temperature added to CasioStyleG7710 [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
   - also added PineTimeStyle-style settings menu to enable/disable it
 - artist/track/album of current media added to CasioStyleG7710 [casio-media](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-media)
@@ -24,11 +27,11 @@ Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating
 - added features to the the casio watchface [casio-plus](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-plus)
   - everything included in [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
   - everything included in [casio-media](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-media)
+  - everything included in [casio-notify-number](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-notify-number)
   - choose temperature units
     - unified setting for preferred unit
     - PTS and CSG display the correct temperature in that unit
     - ability to toggle that unit in the settings of PTS and CSG
-  - display number of notifications
 
 ## Structure of this fork:
 - main branch: all of the mods merged together
