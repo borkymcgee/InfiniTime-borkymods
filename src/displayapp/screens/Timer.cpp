@@ -102,6 +102,22 @@ void Timer::UpdateMask() {
   lv_objmask_update_mask(btnObjectMask, btnMask, &maskLine);
 }
 
+// left/right swipe on the timer increments/decrements minutes by 5
+bool Timer::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
+  if (!isRunning && event == Pinetime::Applications::TouchEvents::SwipeLeft) {
+    minuteCounter.SetValue(minuteCounter.GetValue() + 5);
+    if (minuteCounter.GetValue() > 60)
+      minuteCounter.SetValue(60);
+    return true;
+  } else if (!isRunning && event == Pinetime::Applications::TouchEvents::SwipeRight) {
+    minuteCounter.SetValue(minuteCounter.GetValue() - 5);
+    if (minuteCounter.GetValue() < 0)
+      minuteCounter.SetValue(0);
+    return true;
+  }
+  return false;
+}
+
 void Timer::Refresh() {
   if (timer.IsRunning()) {
     auto secondsRemaining = std::chrono::duration_cast<std::chrono::seconds>(timer.GetTimeRemaining());
@@ -120,12 +136,14 @@ void Timer::Refresh() {
 }
 
 void Timer::SetTimerRunning() {
+  isRunning = true;
   minuteCounter.HideControls();
   secondCounter.HideControls();
   lv_label_set_text_static(txtPlayPause, "Pause");
 }
 
 void Timer::SetTimerStopped() {
+  isRunning = false;
   minuteCounter.ShowControls();
   secondCounter.ShowControls();
   lv_label_set_text_static(txtPlayPause, "Start");

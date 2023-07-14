@@ -19,12 +19,14 @@ namespace Pinetime::Applications::Screens {
     void ToggleRunning();
     void ButtonPressed();
     void MaskReset();
+    bool OnTouchEvent(Pinetime::Applications::TouchEvents event) override;
 
   private:
     void SetTimerRunning();
     void SetTimerStopped();
     void UpdateMask();
     Controllers::Timer& timer;
+    bool isRunning = false;
 
     lv_obj_t* btnPlayPause;
     lv_obj_t* txtPlayPause;
