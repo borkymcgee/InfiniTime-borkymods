@@ -133,5 +133,6 @@ std::unique_ptr<Screen> Clock::WatchFaceCasioStyleG7710() {
                                                              heartRateController,
                                                              motionController,
                                                              filesystem,
-                                                             touchHandler);
+                                                             touchHandler,
+                                                             weatherService);
 }

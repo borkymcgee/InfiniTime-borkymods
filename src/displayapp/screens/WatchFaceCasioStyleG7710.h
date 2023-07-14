@@ -9,6 +9,7 @@
 #include "components/datetime/DateTimeController.h"
 #include "components/ble/BleController.h"
 #include "touchhandler/TouchHandler.h"
+#include "components/ble/weather/WeatherService.h"
 #include "utility/DirtyValue.h"
 
 namespace Pinetime {
@@ -29,15 +30,21 @@ namespace Pinetime {
         WatchFaceCasioStyleG7710(Controllers::DateTime& dateTimeController,
                                  const Controllers::Battery& batteryController,
                                  const Controllers::Ble& bleController,
-                                 Controllers::NotificationManager& notificatioManager,
+                                 Controllers::NotificationManager& notificationManager,
                                  Controllers::Settings& settingsController,
                                  Controllers::HeartRateController& heartRateController,
                                  Controllers::MotionController& motionController,
                                  Controllers::FS& filesystem,
-                                 Controllers::TouchHandler& touchHandler);
+                                 Controllers::TouchHandler& touchHandler,
+                                 Controllers::WeatherService& weather);
         ~WatchFaceCasioStyleG7710() override;
 
+        bool OnTouchEvent(TouchEvents event) override;
+        bool OnButtonPushed() override;
+
         void Refresh() override;
+
+        void UpdateSelected(lv_obj_t* object, lv_event_t event);
 
         static bool IsAvailable(Pinetime::Controllers::FS& filesystem);
 
@@ -51,8 +58,14 @@ namespace Pinetime {
         Utility::DirtyValue<uint8_t> heartbeat {};
         Utility::DirtyValue<bool> heartbeatRunning {};
         Utility::DirtyValue<bool> notificationState {};
+        Utility::DirtyValue<int16_t> nowTemp {};
         using days = std::chrono::duration<int32_t, std::ratio<86400>>; // TODO: days is standard in c++20
         Utility::DirtyValue<std::chrono::time_point<std::chrono::system_clock, days>> currentDate;
+
+        uint32_t savedTick = 0;
+
+        int16_t clouds = 0;
+        int16_t precip = 0;
 
         lv_point_t line_icons_points[3] {{0, 5}, {117, 5}, {122, 0}};
         lv_point_t line_day_of_week_number_points[4] {{0, 0}, {100, 0}, {95, 95}, {0, 95}};
@@ -65,6 +78,8 @@ namespace Pinetime {
         lv_style_t style_line;
         lv_style_t style_border;
 
+        lv_obj_t* btnWeather;
+        lv_obj_t* lblWeather;
         lv_obj_t* label_time;
         lv_obj_t* line_time;
         lv_obj_t* label_time_ampm;
@@ -72,6 +87,8 @@ namespace Pinetime {
         lv_obj_t* line_date;
         lv_obj_t* label_day_of_week;
         lv_obj_t* label_week_number;
+        lv_obj_t* weatherIcon;
+        lv_obj_t* temperature;
         lv_obj_t* line_day_of_week_number;
         lv_obj_t* label_day_of_year;
         lv_obj_t* line_day_of_year;
@@ -93,11 +110,14 @@ namespace Pinetime {
         Controllers::DateTime& dateTimeController;
         const Controllers::Battery& batteryController;
         const Controllers::Ble& bleController;
-        Controllers::NotificationManager& notificatioManager;
+        Controllers::NotificationManager& notificationManager;
         Controllers::Settings& settingsController;
         Controllers::HeartRateController& heartRateController;
         Controllers::MotionController& motionController;
         Controllers::TouchHandler& touchHandler;
+        Controllers::WeatherService& weatherService;
+
+        void CloseMenu();
 
         lv_task_t* taskRefresh;
         lv_font_t* font_dot40 = nullptr;
