@@ -1,3 +1,36 @@
+# WARNING, THIS BRANCH IS CURRENTLY UNDER CONSTRUCTION AFTER AN ORGANIZATIONAL CHANGE, SOME OF THE INFORMATION HERE IS INCORRECT
+
+This should be remedied by the end of the day of 7/14/23, please refrain from touching it until then
+
+#  InfiniTime-borkymods
+
+Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating a suite of modifications by me (borky)
+
+## Added features include:
+- added features to the the casio watchface [casio-plus](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-plus)
+  - current weather
+  - artist/track/album of the current media
+  - ability to choose temperature unit for weather (also added this feature to PineTimeStyle)
+  - settings menu like PineTimeStyle to enable these new features
+  - display number of notifications
+- touchscreen lock [touch-lock](https://github.com/borkymcgee/InfiniTime-borkymods/tree/touch-lock)
+  - double pressing the button disables or re-enables the touch screen
+  - an indicator of the current state of the lock on the casio and PineTimeStyle watchfaces
+- music app is entirely swipe-based [swipe-only-music](https://github.com/borkymcgee/InfiniTime-borkymods/tree/swipe-only-music)
+  - (up/down for volume, left/right for forward-back, tap for pause)
+  - removed buttons
+- swiping left on the watchface opens the music app [swipe-left-music-shortcut](https://github.com/borkymcgee/InfiniTime-borkymods/tree/swipe-left-music-shortcut)
+- swiping up opens the timer app first, and then the app list [swipe-up-timer-shortcut](https://github.com/borkymcgee/InfiniTime-borkymods/tree/swipe-up-timer-shortcut)
+- ability to swipe left or right on the timer app while setting to increase/decrease the timer by 5 minutes [timer-swipe-jump5](https://github.com/borkymcgee/InfiniTime-borkymods/tree/timer-swipe-jump5)
+- ability to swipe left or right on notifications to dismiss them [ambi-notifications](https://github.com/borkymcgee/InfiniTime-borkymods/tree/ambi-notifications)
+- custom version text :3 [custom-version-text](https://github.com/borkymcgee/InfiniTime-borkymods/tree/custom-version-text)
+
+## Structure of this fork:
+- main branch: all of the mods merged together
+- clean branch: a pristine clone of the original repo to branch new features off of
+- all other branches: identical to the clean branch but with one mod in each branch
+
+
 # [InfiniTime](https://github.com/InfiniTimeOrg/InfiniTime)
 
 ![InfiniTime logo](doc/logo/infinitime-logo-small.jpg "InfiniTime Logo")
