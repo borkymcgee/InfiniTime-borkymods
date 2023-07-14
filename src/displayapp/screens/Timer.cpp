@@ -102,15 +102,17 @@ void Timer::UpdateMask() {
   lv_objmask_update_mask(btnObjectMask, btnMask, &maskLine);
 }
 
-//left/right swipe on the timer increments/decrements minutes by 5
-bool Timer::OnTouchEvent(Pinetime::Applications::TouchEvents event){
-  if (!isRunning && event == Pinetime::Applications::TouchEvents::SwipeLeft){
+// left/right swipe on the timer increments/decrements minutes by 5
+bool Timer::OnTouchEvent(Pinetime::Applications::TouchEvents event) {
+  if (!isRunning && event == Pinetime::Applications::TouchEvents::SwipeLeft) {
     minuteCounter.SetValue(minuteCounter.GetValue() + 5);
-    if(minuteCounter.GetValue() > 60) minuteCounter.SetValue(60);
+    if (minuteCounter.GetValue() > 60)
+      minuteCounter.SetValue(60);
     return true;
-  } else if (!isRunning && event == Pinetime::Applications::TouchEvents::SwipeRight){
+  } else if (!isRunning && event == Pinetime::Applications::TouchEvents::SwipeRight) {
     minuteCounter.SetValue(minuteCounter.GetValue() - 5);
-    if(minuteCounter.GetValue() < 0) minuteCounter.SetValue(0);
+    if (minuteCounter.GetValue() < 0)
+      minuteCounter.SetValue(0);
     return true;
   }
   return false;
