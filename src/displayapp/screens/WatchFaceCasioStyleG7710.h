@@ -20,6 +20,7 @@ namespace Pinetime {
     class NotificationManager;
     class HeartRateController;
     class MotionController;
+    class MusicService;
   }
 
   namespace Applications {
@@ -36,7 +37,8 @@ namespace Pinetime {
                                  Controllers::MotionController& motionController,
                                  Controllers::FS& filesystem,
                                  Controllers::TouchHandler& touchHandler,
-                                 Controllers::WeatherService& weather);
+                                 Controllers::WeatherService& weather,
+                                 Controllers::MusicService& musicService);
         ~WatchFaceCasioStyleG7710() override;
 
         bool OnTouchEvent(TouchEvents event) override;
@@ -80,6 +82,8 @@ namespace Pinetime {
 
         lv_obj_t* btnWeather;
         lv_obj_t* lblWeather;
+        lv_obj_t* btnMedia;
+        lv_obj_t* lblMedia;
         lv_obj_t* label_time;
         lv_obj_t* line_time;
         lv_obj_t* label_time_ampm;
@@ -104,6 +108,7 @@ namespace Pinetime {
         lv_obj_t* stepValue;
         lv_obj_t* notificationIcon;
         lv_obj_t* line_icons;
+        lv_obj_t* txtMedia;
 
         BatteryIcon batteryIcon;
 
@@ -116,6 +121,11 @@ namespace Pinetime {
         Controllers::MotionController& motionController;
         Controllers::TouchHandler& touchHandler;
         Controllers::WeatherService& weatherService;
+        Controllers::MusicService& musicService;
+
+        std::string artist = "no artist";
+        std::string album = "no album";
+        std::string track = "no track";
 
         void CloseMenu();
 

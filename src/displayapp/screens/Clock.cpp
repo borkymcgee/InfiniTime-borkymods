@@ -26,7 +26,8 @@ Clock::Clock(Controllers::DateTime& dateTimeController,
              Controllers::MotionController& motionController,
              Controllers::WeatherService& weatherService,
              Controllers::FS& filesystem,
-             Controllers::TouchHandler& touchHandler)
+             Controllers::TouchHandler& touchHandler,
+             Controllers::MusicService& musicService)
   : dateTimeController {dateTimeController},
     batteryController {batteryController},
     bleController {bleController},
@@ -37,6 +38,7 @@ Clock::Clock(Controllers::DateTime& dateTimeController,
     weatherService {weatherService},
     filesystem {filesystem},
     touchHandler {touchHandler},
+    musicService {musicService},
     screen {[this, &settingsController]() {
       switch (settingsController.GetWatchFace()) {
         case WatchFace::Digital:
@@ -134,5 +136,6 @@ std::unique_ptr<Screen> Clock::WatchFaceCasioStyleG7710() {
                                                              motionController,
                                                              filesystem,
                                                              touchHandler,
-                                                             weatherService);
+                                                             weatherService,
+                                                             musicService);
 }

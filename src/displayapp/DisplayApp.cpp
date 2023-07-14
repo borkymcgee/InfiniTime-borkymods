@@ -424,7 +424,8 @@ void DisplayApp::LoadScreen(Apps app, DisplayApp::FullRefreshDirections directio
                                                        motionController,
                                                        systemTask->nimble().weather(),
                                                        filesystem,
-                                                       touchHandler);
+                                                       touchHandler,
+                                                       systemTask->nimble().music());
       break;
 
     case Apps::Error:

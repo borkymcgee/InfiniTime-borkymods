@@ -9,6 +9,7 @@
 #include "components/datetime/DateTimeController.h"
 #include "components/ble/weather/WeatherService.h"
 #include "touchhandler/TouchHandler.h"
+#include "components/ble/MusicService.h"
 
 namespace Pinetime {
   namespace Controllers {
@@ -32,7 +33,8 @@ namespace Pinetime {
               Controllers::MotionController& motionController,
               Controllers::WeatherService& weatherService,
               Controllers::FS& filesystem,
-              Controllers::TouchHandler& touchHandler);
+              Controllers::TouchHandler& touchHandler,
+              Controllers::MusicService& musicService);
         ~Clock() override;
 
         bool OnTouchEvent(TouchEvents event) override;
@@ -49,6 +51,7 @@ namespace Pinetime {
         Controllers::WeatherService& weatherService;
         Controllers::FS& filesystem;
         Controllers::TouchHandler& touchHandler;
+        Controllers::MusicService& musicService;
 
         std::unique_ptr<Screen> screen;
         std::unique_ptr<Screen> WatchFaceDigitalScreen();
