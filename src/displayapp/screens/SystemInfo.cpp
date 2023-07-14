@@ -81,6 +81,15 @@ std::unique_ptr<Screen> SystemInfo::CreateScreen1() {
   lv_label_set_text_fmt(label,
                         "#FFFF00 InfiniTime#\n\n"
                         "#808080 Version# %ld.%ld.%ld\n"
+                        //"#EAACB8 Jun Edition OwO#\n"
+                        "#7ACBF5 Ju#"
+                        "#EAACB8 n E#"
+                        "#FFFFFF di#"
+                        "#EAACB8 ti#"
+                        "#7ACBF5 on#"
+                        "#FFF430  O#"
+                        "#FFFFFF w#"
+                        "#9C59D1 O#\n"
                         "#808080 Short Ref# %s\n"
                         "#808080 Build date#\n"
                         "%s\n"
@@ -179,6 +188,7 @@ std::unique_ptr<Screen> SystemInfo::CreateScreen2() {
 
 extern int mallocFailedCount;
 extern int stackOverflowCount;
+
 std::unique_ptr<Screen> SystemInfo::CreateScreen3() {
   lv_mem_monitor_t mon;
   lv_mem_monitor(&mon);
