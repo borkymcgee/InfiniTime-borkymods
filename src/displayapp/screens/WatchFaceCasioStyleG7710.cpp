@@ -130,6 +130,7 @@ WatchFaceCasioStyleG7710::WatchFaceCasioStyleG7710(Controllers::DateTime& dateTi
   lv_obj_set_style_local_text_color(notificationIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, color_text);
   lv_label_set_text_static(notificationIcon, NotificationIcon::GetIcon(false));
   lv_obj_align(notificationIcon, bleIcon, LV_ALIGN_OUT_LEFT_MID, -14, 0);
+  lv_label_set_text_fmt(notificationIcon, "0");
 
   label_day_of_week = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_align(label_day_of_week, lv_scr_act(), LV_ALIGN_IN_TOP_LEFT, 10, 64);
@@ -383,7 +384,8 @@ void WatchFaceCasioStyleG7710::Refresh() {
 
   notificationState = notificationManager.AreNewNotificationsAvailable();
   if (notificationState.IsUpdated()) {
-    lv_label_set_text_static(notificationIcon, NotificationIcon::GetIcon(notificationState.Get()));
+    uint8_t notifNb = notificatioManager.NbNotifications();
+    lv_label_set_text_fmt(notificationIcon, "%i", notifNb);
   }
 
   lv_obj_set_hidden(touchLockCross, touchHandler.touchEnabled);
