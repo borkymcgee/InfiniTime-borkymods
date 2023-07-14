@@ -4,8 +4,7 @@ Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating
 
 ## Added features include:
 - CasioStyleG7710 notifications... fixed? [casio-notify-number](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-notify-number)
-  - Previously only showed an 'i' if there were unread notifications, which only occurs if notifications are off anyway? unsure if this is intended
-  - at any rate, it now shows the number of undismissed notifications
+  - Previously only showed an 'i' if there were unread notifications, now shows the number of undismissed notifications
 - weather and temperature added to CasioStyleG7710 [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
   - also added PineTimeStyle-style settings menu to enable/disable it
 - artist/track/album of current media added to CasioStyleG7710 [casio-media](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-media)
