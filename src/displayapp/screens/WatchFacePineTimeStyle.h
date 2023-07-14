@@ -78,6 +78,8 @@ namespace Pinetime {
         lv_obj_t* btnClose;
         lv_obj_t* btnSteps;
         lv_obj_t* btnWeather;
+        lv_obj_t* btnTempUnits;
+        lv_obj_t* lblTempUnits;
         lv_obj_t* timebar;
         lv_obj_t* sidebar;
         lv_obj_t* timeDD1;
