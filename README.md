@@ -3,13 +3,16 @@
 Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating a suite of modifications by me (borky)
 
 ## Added features include:
-- added weather and PineTimeStyle-style settings menu to enable/disable it [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
+- weather and temperature added to CasioStyleG7710 [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
+  - also added PineTimeStyle-style settings menu to enable/disable it
+- artist/track/album of current media added to CasioStyleG7710 [casio-media](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-media)
+  - also added PineTimeStyle-style settings menu to select which of those to show, if any
 - touchscreen lock [touch-lock](https://github.com/borkymcgee/InfiniTime-borkymods/tree/touch-lock)
-  - double pressing the button disables or re-enables the touch screen
+  - double pressing the button disables or re-enables the touch screen, anywhere in InfiniTime
   - an indicator of the current state of the lock on the casio and PineTimeStyle watchfaces
-- music app is entirely swipe-based [swipe-only-music](https://github.com/borkymcgee/InfiniTime-borkymods/tree/swipe-only-music)
+- altered music app to be entirely swipe-based [swipe-only-music](https://github.com/borkymcgee/InfiniTime-borkymods/tree/swipe-only-music)
   - (up/down for volume, left/right for forward-back, tap for pause)
-  - removed buttons
+  - removed graphical buttons
 - swiping left on the watchface opens the music app [swipe-left-music-shortcut](https://github.com/borkymcgee/InfiniTime-borkymods/tree/swipe-left-music-shortcut)
 - swiping up opens the timer app first, and then the app list [swipe-up-timer-shortcut](https://github.com/borkymcgee/InfiniTime-borkymods/tree/swipe-up-timer-shortcut)
 - ability to swipe left or right on the timer app while setting to increase/decrease the timer by 5 minutes [timer-swipe-jump5](https://github.com/borkymcgee/InfiniTime-borkymods/tree/timer-swipe-jump5)
@@ -19,9 +22,12 @@ Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating
 ## In progress (due to organizational change in the repo, this branch is broken and is not included in main), should be fixed and merged soon
 
 - added features to the the casio watchface [casio-plus](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-plus)
-  - artist/track/album of the current media
-  - ability to choose temperature unit for weather (also added this feature to PineTimeStyle)
-  - settings menu like PineTimeStyle to enable these new features
+  - everything included in [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
+  - everything included in [casio-media](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-media)
+  - choose temperature units
+    - unified setting for preferred unit
+    - PTS and CSG display the correct temperature in that unit
+    - ability to toggle that unit in the settings of PTS and CSG
   - display number of notifications
 
 ## Structure of this fork:
