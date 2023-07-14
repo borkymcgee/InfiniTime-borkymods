@@ -384,7 +384,7 @@ void WatchFaceCasioStyleG7710::Refresh() {
 
   notificationState = notificationManager.AreNewNotificationsAvailable();
   if (notificationState.IsUpdated()) {
-    uint8_t notifNb = notificatioManager.NbNotifications();
+    uint8_t notifNb = notificationManager.NbNotifications();
     lv_label_set_text_fmt(notificationIcon, "%i", notifNb);
   }
 
