@@ -3,6 +3,8 @@
 Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating a suite of modifications by me (borky)
 
 ## Added features include:
+
+- Swipe up on metronome app replaces dial with counter, for more precision [tempo-counter](https://github.com/borkymcgee/InfiniTime-borkymods/tree/tempo-counter)
 - CasioStyleG7710 shows number of undismissed notifications [casio-notify-number](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-notify-number)
   - Previously only showed an 'i' if there were unread notifications, now shows the number of undismissed notifications
 - weather and temperature added to CasioStyleG7710 [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
