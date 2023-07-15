@@ -248,6 +248,20 @@ WatchFaceCasioStyleG7710::WatchFaceCasioStyleG7710(Controllers::DateTime& dateTi
     lv_label_set_text_static(lblWeather, "Weather: On");
   }
 
+  btnTempUnits = lv_btn_create(lv_scr_act(), nullptr);
+  btnTempUnits->user_data = this;
+  lv_obj_set_size(btnTempUnits, 160, 60);
+  lv_obj_align(btnTempUnits, lv_scr_act(), LV_ALIGN_CENTER, 0, 60);
+  lv_obj_set_style_local_bg_opa(btnTempUnits, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_80);
+  lblTempUnits = lv_label_create(btnTempUnits, nullptr);
+  lv_obj_set_event_cb(btnTempUnits, event_handler);
+  lv_obj_set_hidden(btnTempUnits, true);
+  if (settingsController.GetTempUnits() == Controllers::Settings::TempUnits::Celcius) {
+    lv_label_set_text_static(lblTempUnits, "Units: °C");
+  } else {
+    lv_label_set_text_static(lblTempUnits, "Units: °F");
+  }
+
   txtMedia = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_long_mode(txtMedia, LV_LABEL_LONG_SROLL_CIRC);
   lv_obj_align(txtMedia, heartbeatValue, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
@@ -310,6 +324,7 @@ bool WatchFaceCasioStyleG7710::OnTouchEvent(Pinetime::Applications::TouchEvents 
   if (event == Pinetime::Applications::TouchEvents::LongTap && lv_obj_get_hidden(btnWeather)) {
     lv_obj_set_hidden(btnWeather, false);
     lv_obj_set_hidden(btnMedia, false);
+    lv_obj_set_hidden(btnTempUnits, false);
     savedTick = lv_tick_get();
     return true;
   }
@@ -320,6 +335,7 @@ void WatchFaceCasioStyleG7710::CloseMenu() {
   settingsController.SaveSettings();
   lv_obj_set_hidden(btnWeather, true);
   lv_obj_set_hidden(btnMedia, true);
+  lv_obj_set_hidden(btnTempUnits, true);
 }
 
 bool WatchFaceCasioStyleG7710::OnButtonPushed() {
@@ -345,7 +361,11 @@ void WatchFaceCasioStyleG7710::Refresh() {
 
   if (weatherService.GetCurrentTemperature()->timestamp != 0 && weatherService.GetCurrentClouds()->timestamp != 0 &&
       weatherService.GetCurrentPrecipitation()->timestamp != 0) {
-    nowTemp = (weatherService.GetCurrentTemperature()->temperature / 100); // just use temp as is
+    if (settingsController.GetTempUnits() == Controllers::Settings::TempUnits::Celcius) {
+      nowTemp = (weatherService.GetCurrentTemperature()->temperature / 100); // just use temp as is
+    } else {
+      nowTemp = ((weatherService.GetCurrentTemperature()->temperature / 100) * 1.8 + 32); // convert to F first
+    }
     clouds = (weatherService.GetCurrentClouds()->amount);
     precip = (weatherService.GetCurrentPrecipitation()->amount);
     if (nowTemp.IsUpdated()) {
@@ -508,6 +528,7 @@ void WatchFaceCasioStyleG7710::Refresh() {
     if ((savedTick > 0) && (lv_tick_get() - savedTick > 3000)) {
       lv_obj_set_hidden(btnWeather, true);
       lv_obj_set_hidden(btnMedia, true);
+      lv_obj_set_hidden(btnTempUnits, true);
       savedTick = 0;
     }
   }
@@ -517,7 +538,15 @@ void WatchFaceCasioStyleG7710::Refresh() {
 void WatchFaceCasioStyleG7710::UpdateSelected(lv_obj_t* object, lv_event_t event) {
   if (event == LV_EVENT_CLICKED) {
     savedTick = lv_tick_get(); // reset 3 second timer to dismiss
-    if (object == btnMedia) {
+    if (object == btnTempUnits) { // if units button, switch units
+      if (settingsController.GetTempUnits() == Controllers::Settings::TempUnits::Celcius) {
+        settingsController.SetTempUnits(Controllers::Settings::TempUnits::Fahrenheit);
+        lv_label_set_text_static(lblTempUnits, "Units: °F");
+      } else {
+        settingsController.SetTempUnits(Controllers::Settings::TempUnits::Celcius);
+        lv_label_set_text_static(lblTempUnits, "Units: °C");
+      }
+    } else if (object == btnMedia) {
       switch (settingsController.GetCSGMediaStyle()) {
         case Pinetime::Controllers::Settings::CSGMediaStyle::Off:
           lv_label_set_text_static(lblMedia, "Media: Artist");

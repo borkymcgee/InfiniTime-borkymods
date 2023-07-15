@@ -81,6 +81,8 @@ namespace Pinetime {
         lv_style_t style_border;
 
         lv_obj_t* btnWeather;
+        lv_obj_t* btnTempUnits;
+        lv_obj_t* lblTempUnits;
         lv_obj_t* lblWeather;
         lv_obj_t* btnMedia;
         lv_obj_t* lblMedia;
