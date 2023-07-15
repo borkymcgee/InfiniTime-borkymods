@@ -457,7 +457,7 @@ void WatchFaceCasioStyleG7710::Refresh() {
 // handle settings buttons and update settings accordingly
 void WatchFaceCasioStyleG7710::UpdateSelected(lv_obj_t* object, lv_event_t event) {
   if (event == LV_EVENT_CLICKED) {
-    savedTick = lv_tick_get();              // reset 3 second timer to dismiss
+    savedTick = lv_tick_get();    // reset 3 second timer to dismiss
     if (object == btnTempUnits) { // if units button, switch units
       if (settingsController.GetTempUnits() == Controllers::Settings::TempUnits::Celcius) {
         settingsController.SetTempUnits(Controllers::Settings::TempUnits::Fahrenheit);
