@@ -8,12 +8,12 @@ Howdy! This repo is a fork of the InfiniTime firmware for PineTime incorporating
 - CasioStyleG7710 shows number of undismissed notifications [casio-notify-number](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-notify-number)
   - Previously only showed an 'i' if there were unread notifications, now shows the number of undismissed notifications
 - weather and temperature added to CasioStyleG7710 [casio-weather](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-weather)
+  - also added PineTimeStyle-style settings menu to enable/disable them
   - choose temperature units [temp-units](https://github.com/borkymcgee/InfiniTime-borkymods/tree/temp-units)
     - (this one is a branch off of casio-weather, so also includes those features)
     - unified setting for preferred unit
     - PTS and CSG display the correct temperature in that unit
     - ability to toggle that unit in the settings of PTS and CSG
-  - also added PineTimeStyle-style settings menu to enable/disable it
 - artist/track/album of current media added to CasioStyleG7710 [casio-media](https://github.com/borkymcgee/InfiniTime-borkymods/tree/casio-media)
   - also added PineTimeStyle-style settings menu to select which of those to show, if any
 - touchscreen lock [touch-lock](https://github.com/borkymcgee/InfiniTime-borkymods/tree/touch-lock)
